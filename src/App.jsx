@@ -1,6 +1,6 @@
 import React from 'react';
 import { restaurants } from '../materials/mock.js';
-import Restaurant from './components/RestaurantComponent.jsx';
+import Restaurant from './components/restaurant/RestaurantComponent';
 import Layout from './components/layout/Layout';
 
 const App = () => {
