@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { restaurants } from '../materials/mock.js';
 import Restaurant from './components/restaurant/RestaurantComponent';
+import RestaurantsPage from './components/restaurant/RestaurantsPage';
 import Layout from './components/layout/Layout';
 
 const App = () => {
@@ -8,16 +9,8 @@ const App = () => {
 
   return (
     <Layout title='Рестораны'>
-      <>
-        {restaurants.map((restaurant) => (
-          <button key={restaurant.id} onClick={() => setRestaurant(restaurant)}>
-            {restaurant.name}
-          </button>
-        ))}
-      </>
-      <>
-        <Restaurant key={restaurant.id} restaurant={restaurant} />
-      </>
+      <RestaurantsPage restaurants={restaurants} setRestaurant={setRestaurant}></RestaurantsPage>
+      <Restaurant key={restaurant.id} restaurant={restaurant} />
     </Layout>
   );
 };
