@@ -4,9 +4,13 @@ import Name from './Name.jsx';
 import Reviews from './Reviews.jsx';
 
 const Restaurant = ({ restaurant }) => {
-  if (!restaurant) return <p>Что-то пошло не так...</p>;
-  if (restaurant.name && restaurant.menu.length === 0)
+  if (!restaurant) {
+    return <p>Что-то пошло не так...</p>;
+  }
+
+  if (restaurant.name && restaurant.menu.length === 0) {
     return <p>Меню для {restaurant.name} отсутствует</p>;
+  }
 
   return (
     <>
