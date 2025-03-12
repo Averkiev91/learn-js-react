@@ -9,7 +9,7 @@ const App = () => {
 
   return (
     <Layout title='Рестораны'>
-      <RestaurantsPage restaurants={restaurants} setRestaurant={setRestaurant}></RestaurantsPage>
+      <RestaurantsPage restaurants={restaurants} setRestaurant={setRestaurant} />
       <Restaurant key={restaurant.id} restaurant={restaurant} />
     </Layout>
   );
