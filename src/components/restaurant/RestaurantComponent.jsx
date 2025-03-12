@@ -1,7 +1,7 @@
 import React from 'react';
 import Menu from './Menu.jsx';
 import Name from './Name.jsx';
-import Reviews from './Reviews.jsx';
+import Review from './Reviews.jsx';
 
 const Restaurant = ({ restaurant }) => {
   if (!restaurant) {
@@ -22,7 +22,7 @@ const Restaurant = ({ restaurant }) => {
       <h3>Отзывы</h3>
       {restaurant.reviews && restaurant.reviews.length > 0 ? (
         restaurant.reviews.map((review) => {
-          return <Reviews key={review.id} review={review} />;
+          return <Review key={review.id} review={review} />;
         })
       ) : (
         <p>Отзывы отсутствуют</p>
