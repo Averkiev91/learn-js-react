@@ -4,14 +4,13 @@ import Counter from '../Restaurant/Counter';
 const DishCounter = () => {
   const [dishCount, setDishCount] = useState(0);
 
-  const handleDishCountChange = (e) => {
-    setDishCount(Number(e.target.value));
+  const handleDishCountChange = (newCount) => {
+    setDishCount(Number(newCount));
   };
 
   return (
     <div>
-      <p>{`Количество блюд: ${dishCount}`}</p>
-      <Counter count={dishCount} onChange={handleDishCountChange} />
+      <Counter value={dishCount} onChange={handleDishCountChange} />
     </div>
   );
 };
