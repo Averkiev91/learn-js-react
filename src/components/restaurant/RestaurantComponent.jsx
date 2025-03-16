@@ -1,9 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Menu from './Menu.jsx';
 import Name from './Name.jsx';
 import ReviewListItem from './Reviews.jsx';
+import ReviewForm from './ReviewForm.jsx';
 
 const Restaurant = ({ restaurant }) => {
+  const [reviews, setReviews] = useState(restaurant.reviews || []);
+
+  const addReview = (reviewData) => {
+    const newReview = {
+      id: Date.now().toString(),
+      user: reviewData.name,
+      text: reviewData.comment,
+      rating: reviewData.rating,
+    };
+
+    setReviews([...reviews, newReview]);
+  };
+
   if (!restaurant) {
     return <p>Что-то пошло не так...</p>;
   }
@@ -20,15 +34,17 @@ const Restaurant = ({ restaurant }) => {
         return <Menu key={menu.id} menu={menu} />;
       })}
       <h3>Отзывы</h3>
-      {restaurant.reviews && restaurant.reviews.length > 0 ? (
+      {reviews.length > 0 ? (
         <ol>
-          {restaurant.reviews.map((review) => {
+          {reviews.map((review) => {
             return <ReviewListItem key={review.id} review={review} />;
           })}
         </ol>
       ) : (
         <p>Отзывы отсутствуют</p>
       )}
+      <h3>Оставить отзыв</h3>
+      <ReviewForm addReview={addReview} />
     </>
   );
 };
