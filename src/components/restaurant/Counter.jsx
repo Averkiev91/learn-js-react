@@ -1,15 +1,23 @@
 import React, { useState } from 'react';
 import { MIN_COUNT, MAX_COUNT } from '../../config/config.js';
 
-const Counter = () => {
-  const [count, setCount] = useState(MIN_COUNT);
+const Counter = ({ value, onChange }) => {
+  const [count, setCount] = useState(value || MIN_COUNT);
 
   const increment = () => {
-    setCount((prevCount) => (prevCount < MAX_COUNT ? prevCount + 1 : prevCount));
+    const newCount = count < MAX_COUNT ? count + 1 : count;
+    setCount(newCount);
+    if (onChange) {
+      onChange(newCount);
+    }
   };
 
   const decrement = () => {
-    setCount((prevCount) => (prevCount > MIN_COUNT ? prevCount - 1 : prevCount));
+    const newCount = count > MIN_COUNT ? count - 1 : count;
+    setCount(newCount);
+    if (onChange) {
+      onChange(newCount);
+    }
   };
 
   return (
