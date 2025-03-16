@@ -4,7 +4,9 @@ import { MIN_COUNT, MAX_COUNT } from '../../config/config.js';
 const Counter = ({ value, onChange }) => {
   const [count, setCount] = useState(value || MIN_COUNT);
 
-  const increment = () => {
+  const increment = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     const newCount = count < MAX_COUNT ? count + 1 : count;
     setCount(newCount);
     if (onChange) {
@@ -12,7 +14,9 @@ const Counter = ({ value, onChange }) => {
     }
   };
 
-  const decrement = () => {
+  const decrement = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     const newCount = count > MIN_COUNT ? count - 1 : count;
     setCount(newCount);
     if (onChange) {
@@ -23,10 +27,10 @@ const Counter = ({ value, onChange }) => {
   return (
     <div>
       <p>{count}</p>
-      <button onClick={decrement} disabled={count <= MIN_COUNT}>
+      <button type='button' onClick={decrement} disabled={count <= MIN_COUNT}>
         -
       </button>
-      <button onClick={increment} disabled={count >= MAX_COUNT}>
+      <button type='button' onClick={increment} disabled={count >= MAX_COUNT}>
         +
       </button>
     </div>
