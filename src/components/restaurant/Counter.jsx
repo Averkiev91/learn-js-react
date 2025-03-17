@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { MIN_COUNT, MAX_COUNT } from '../../config/config.js';
 
 const Counter = ({ value, onChange }) => {
-  const [count, setCount] = useState(value || MIN_COUNT);
-
   const increment = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    const newCount = count < MAX_COUNT ? count + 1 : count;
-    setCount(newCount);
+    const newCount = value < MAX_COUNT ? value + 1 : value;
     if (onChange) {
       onChange(newCount);
     }
@@ -17,8 +14,7 @@ const Counter = ({ value, onChange }) => {
   const decrement = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    const newCount = count > MIN_COUNT ? count - 1 : count;
-    setCount(newCount);
+    const newCount = value > MIN_COUNT ? value - 1 : value;
     if (onChange) {
       onChange(newCount);
     }
@@ -26,11 +22,11 @@ const Counter = ({ value, onChange }) => {
 
   return (
     <div>
-      <p>{count}</p>
-      <button type='button' onClick={decrement} disabled={count <= MIN_COUNT}>
+      <p>{value}</p>
+      <button type='button' onClick={decrement} disabled={value <= MIN_COUNT}>
         -
       </button>
-      <button type='button' onClick={increment} disabled={count >= MAX_COUNT}>
+      <button type='button' onClick={increment} disabled={value >= MAX_COUNT}>
         +
       </button>
     </div>
