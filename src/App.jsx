@@ -1,6 +1,6 @@
 import React from 'react';
-import Layout from './components/layout/Layout';
-import RestaurantsContainer from './components/restaurant/RestaurantsContainer';
+import Layout from './components/Layout/Layout';
+import RestaurantsContainer from './components/Restaurant/RestaurantsContainer';
 
 const App = () => {
   return (

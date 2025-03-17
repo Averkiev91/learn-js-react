@@ -1,5 +1,5 @@
 import React from 'react';
-import Counter from './Counter';
+import DishCounter from '../DishCounter/DishCounter';
 
 const Menu = ({ menu }) => {
   return (
@@ -9,7 +9,8 @@ const Menu = ({ menu }) => {
         <li>{`Price: ${menu.price}`}</li>
         <li>{`Ingredients: ${menu.ingredients}`}</li>
       </ul>
-      <Counter />
+      <p>{`Количество блюд:`}</p>
+      <DishCounter />
     </div>
   );
 };

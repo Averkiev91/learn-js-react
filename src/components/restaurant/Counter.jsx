@@ -1,24 +1,32 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { MIN_COUNT, MAX_COUNT } from '../../config/config.js';
 
-const Counter = () => {
-  const [count, setCount] = useState(MIN_COUNT);
-
-  const increment = () => {
-    setCount((prevCount) => (prevCount < MAX_COUNT ? prevCount + 1 : prevCount));
+const Counter = ({ value, onChange }) => {
+  const increment = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const newCount = value < MAX_COUNT ? value + 1 : value;
+    if (onChange) {
+      onChange(newCount);
+    }
   };
 
-  const decrement = () => {
-    setCount((prevCount) => (prevCount > MIN_COUNT ? prevCount - 1 : prevCount));
+  const decrement = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const newCount = value > MIN_COUNT ? value - 1 : value;
+    if (onChange) {
+      onChange(newCount);
+    }
   };
 
   return (
     <div>
-      <p>{count}</p>
-      <button onClick={decrement} disabled={count <= MIN_COUNT}>
+      <p>{value}</p>
+      <button type='button' onClick={decrement} disabled={value <= MIN_COUNT}>
         -
       </button>
-      <button onClick={increment} disabled={count >= MAX_COUNT}>
+      <button type='button' onClick={increment} disabled={value >= MAX_COUNT}>
         +
       </button>
     </div>
