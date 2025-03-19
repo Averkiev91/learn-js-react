@@ -5,7 +5,6 @@ const DishCounter = () => {
   const [dishCount, setDishCount] = useState(0);
 
   const handleDishCountChange = useCallback((newCount) => {
-    console.log(newCount);
     setDishCount(Number(newCount));
   }, []);
 
