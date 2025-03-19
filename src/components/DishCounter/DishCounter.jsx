@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import Counter from '../Restaurant/Counter';
 
 const DishCounter = () => {
   const [dishCount, setDishCount] = useState(0);
 
-  const handleDishCountChange = (newCount) => {
+  const handleDishCountChange = useCallback((newCount) => {
+    console.log(newCount);
     setDishCount(Number(newCount));
-  };
+  }, []);
 
   return (
     <div>
