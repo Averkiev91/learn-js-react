@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import Menu from './Menu.jsx';
 import Name from './Name.jsx';
 import ReviewListItem from './Reviews.jsx';
@@ -7,7 +7,7 @@ import ReviewForm from './ReviewForm.jsx';
 const Restaurant = ({ restaurant }) => {
   const [reviews, setReviews] = useState(restaurant.reviews || []);
 
-  const addReview = (reviewData) => {
+  const addReview = useCallback((reviewData) => {
     const newReview = {
       id: Date.now().toString(),
       user: reviewData.name,
@@ -15,8 +15,8 @@ const Restaurant = ({ restaurant }) => {
       rating: reviewData.rating,
     };
 
-    setReviews([...reviews, newReview]);
-  };
+    setReviews((reviews) => [...reviews, newReview]);
+  }, []);
 
   if (!restaurant) {
     return <p>Что-то пошло не так...</p>;
