@@ -8,6 +8,7 @@
   --input-bg: #ffffff;
   --input-border: #d1d5db;
   --shadow-color: rgba(0, 0, 0, 0.1);
+  --error-color: #750606;
 }
 
 [data-theme='dark'] {
@@ -20,6 +21,7 @@
   --input-bg: #1f2937;
   --input-border: #4b5563;
   --shadow-color: rgba(0, 0, 0, 0.3);
+  --error-color: #dd5b5b;
 }
 
 div[data-theme='light'] {
@@ -122,13 +124,8 @@ button:hover {
   box-sizing: border-box;
 }
 
-.container {
-  max-width: 50rem;
-  margin: 0 auto;
-  padding: 1.25rem;
-  background-color: var(--bg-color);
-  border-radius: 0.5rem;
-  box-shadow: 0 0 10px var(--shadow-color);
+.error {
+  color: var(--error-color);
 }
 
 input,

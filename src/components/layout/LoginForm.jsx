@@ -1,4 +1,6 @@
 import React, { useState, useCallback } from 'react';
+import classNames from 'classnames';
+import '../../styles/global.css';
 
 const LoginForm = ({ onLogin }) => {
   const [inputName, setInputName] = useState('');
@@ -24,7 +26,7 @@ const LoginForm = ({ onLogin }) => {
     <div>
       <input type='text' value={inputName} onChange={handleInputChange} placeholder='Введите имя' />
       <button onClick={handleLogin}>Войти</button>
-      {error && <span style={{ color: 'red', marginLeft: '10px' }}>{error}</span>}
+      {error && <span className={classNames('error')}>{error}</span>}
     </div>
   );
 };
