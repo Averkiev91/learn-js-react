@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useTheme } from '../../hooks/useTheme';
 import { useUser } from '../../hooks/useUser';
 
@@ -7,14 +7,14 @@ const Header = () => {
   const { user, login, logout } = useUser();
   const [inputName, setInputName] = useState('');
 
-  const handleLogin = () => {
+  const handleLogin = useCallback(() => {
     if (inputName.trim()) {
       const success = login(inputName);
       if (!success) {
         alert('Пользователь не найден');
       }
     }
-  };
+  }, [inputName, login]);
 
   return (
     <header>
