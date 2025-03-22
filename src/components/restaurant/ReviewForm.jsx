@@ -1,10 +1,16 @@
 import React from 'react';
 import Counter from './Counter';
 import { useReviewForm } from '../../hooks/useReviewForm';
+import { useUser } from '../../hooks/useUser';
 
 const ReviewForm = ({ addReview }) => {
   const { state, handleChange, handleTextChange, handleRatingChange, handleClear } =
     useReviewForm();
+  const { user } = useUser();
+
+  if (!user) {
+    return <p>Не авторизован</p>;
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
