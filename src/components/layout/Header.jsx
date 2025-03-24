@@ -1,23 +1,22 @@
 import React from 'react';
-import { useTheme } from '../../hooks/useTheme';
-import { useUser } from '../../hooks/useUser';
 import ThemeToggleButton from './ThemeToggleButton';
 import LoginForm from './LoginForm';
 import UserPanel from './UserPanel';
+import { useUser } from '../../hooks/useUser';
+import styles from './layout.module.css';
 
 const Header = () => {
-  const { theme, toggleTheme } = useTheme();
-  const { user, login, logout } = useUser();
+  const { user } = useUser();
 
   return (
-    <header>
-      <div>
-        <nav>
+    <header className={styles.header}>
+      <div className={styles.headerContainer}>
+        <nav className={styles.headerNav}>
           <a href='/'>Главная</a>
         </nav>
-        <div>
-          <ThemeToggleButton theme={theme} toggleTheme={toggleTheme} />
-          {user ? <UserPanel user={user} onLogout={logout} /> : <LoginForm onLogin={login} />}
+        <div className={styles.headerActions}>
+          <ThemeToggleButton />
+          {user ? <UserPanel /> : <LoginForm />}
         </div>
       </div>
     </header>

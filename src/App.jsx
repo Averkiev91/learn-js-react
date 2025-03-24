@@ -1,6 +1,7 @@
 import React from 'react';
 import 'normalize.css';
 import './styles/global.css';
+import './styles/variables.css';
 import Layout from './components/Layout/Layout';
 import RestaurantsContainer from './components/Restaurant/RestaurantsContainer';
 import { ThemeProvider } from './context/ThemeProvider';

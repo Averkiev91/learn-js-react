@@ -1,9 +1,12 @@
 import React from 'react';
+import { useTheme } from '../../hooks/useTheme';
 
-const ThemeToggleButton = ({ theme, toggleTheme }) => {
+const ThemeToggleButton = () => {
+  const { theme, toggleTheme } = useTheme();
+
   return (
     <button onClick={toggleTheme}>{theme === 'light' ? 'Тёмная тема' : 'Светлая тема'}</button>
   );
 };
 
-export default React.memo(ThemeToggleButton);
+export default ThemeToggleButton;

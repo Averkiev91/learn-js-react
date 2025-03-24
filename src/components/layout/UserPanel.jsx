@@ -1,12 +1,15 @@
 import React from 'react';
+import { useUser } from '../../hooks/useUser';
 
-const UserPanel = ({ user, onLogout }) => {
+const UserPanel = () => {
+  const { user, logout } = useUser();
+
   return (
     <div>
-      <span>Привет, {user.name}</span>
-      <button onClick={onLogout}>Выйти</button>
+      <span>{`Привет, ${user.name}`}</span>
+      <button onClick={logout}>Выйти</button>
     </div>
   );
 };
 
-export default React.memo(UserPanel);
+export default UserPanel;
