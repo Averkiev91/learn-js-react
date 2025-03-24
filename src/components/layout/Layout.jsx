@@ -2,14 +2,17 @@ import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import ProgressBar from '../ProgressBar/ProgressBar';
+import { useTheme } from '../../hooks/useTheme';
+import styles from './layout.module.css';
 
 const Layout = ({ title, children }) => {
+  const { theme } = useTheme();
   return (
-    <div>
+    <div className={styles.container} data-theme={theme}>
       <ProgressBar />
       <Header />
       <h1>{title}</h1>
-      <main>{children}</main>
+      <main className={styles.main}>{children}</main>
       <Footer />
     </div>
   );

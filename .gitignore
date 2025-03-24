@@ -24,3 +24,5 @@ deps
 *.njsproj
 *.sln
 *.sw?
+
+.cursor/*
