@@ -1,4 +1,6 @@
 import React from 'react';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 import 'normalize.css';
 import './styles/global.css';
 import './styles/variables.css';
@@ -9,13 +11,15 @@ import { UserProvider } from './context/UserProvider';
 
 const App = () => {
   return (
-    <ThemeProvider>
-      <UserProvider>
-        <Layout title='Рестораны'>
-          <RestaurantsContainer />
-        </Layout>
-      </UserProvider>
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider>
+        <UserProvider>
+          <Layout title='Рестораны'>
+            <RestaurantsContainer />
+          </Layout>
+        </UserProvider>
+      </ThemeProvider>
+    </Provider>
   );
 };
 
