@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
-import { restaurants } from '../../../materials/mock';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import Restaurant from './RestaurantComponent';
 import RestaurantsPage from './RestaurantsPage';
 
 const RestaurantsContainer = () => {
-  const [restaurant, setRestaurant] = useState(restaurants[0]);
+  const restaurants = useSelector((state) => state.restaurants.entities);
+  const selectedId = useSelector((state) => state.restaurants.selectedId);
+  const selectedRestaurant = restaurants.find((r) => r.id === selectedId);
 
   return (
     <>
-      <RestaurantsPage restaurants={restaurants} setRestaurant={setRestaurant} />
-      <Restaurant key={restaurant.id} restaurant={restaurant} />
+      <RestaurantsPage restaurants={restaurants} />
+      {selectedRestaurant && (
+        <Restaurant key={selectedRestaurant.id} restaurant={selectedRestaurant} />
+      )}
     </>
   );
 };
