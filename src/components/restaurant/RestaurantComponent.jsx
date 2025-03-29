@@ -1,52 +1,41 @@
-import React, { useState, useCallback } from 'react';
-import Menu from './Menu.jsx';
-import Name from './Name.jsx';
-import ReviewListItem from './Reviews.jsx';
-import ReviewForm from './ReviewForm.jsx';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import Name from './Name';
+import Menu from './Menu';
+import Reviews from './Reviews';
 
-const Restaurant = ({ restaurant }) => {
-  const [reviews, setReviews] = useState(restaurant.reviews || []);
+const RestaurantComponent = ({ restaurantId }) => {
+  const restaurant = useSelector((state) => state.restaurants.entities[restaurantId]);
 
-  const addReview = useCallback((reviewData) => {
-    const newReview = {
-      id: Date.now().toString(),
-      user: reviewData.name,
-      text: reviewData.comment,
-      rating: reviewData.rating,
-    };
+  const menuItems = useSelector((state) =>
+    restaurant.menu.map((dishId) => state.dishes.entities[dishId])
+  );
 
-    setReviews((reviews) => [...reviews, newReview]);
-  }, []);
-
-  if (!restaurant) {
-    return <p>Что-то пошло не так...</p>;
-  }
-
-  if (restaurant.name && restaurant.menu.length === 0) {
-    return <p>Меню для {restaurant.name} отсутствует</p>;
-  }
+  const reviews = useSelector((state) =>
+    restaurant.reviews.map((reviewId) => {
+      const review = state.reviews.entities[reviewId];
+      const user = state.users.entities[review.userId];
+      return { ...review, user: user.name };
+    })
+  );
 
   return (
-    <>
-      <Name key={restaurant.id} name={restaurant.name} />
-      <h3>Меню</h3>
-      {restaurant.menu.map((menu) => {
-        return <Menu key={menu.id} menu={menu} />;
-      })}
-      <h3>Отзывы</h3>
-      {reviews.length > 0 ? (
-        <ol>
-          {reviews.map((review) => {
-            return <ReviewListItem key={review.id} review={review} />;
-          })}
-        </ol>
-      ) : (
-        <p>Отзывы отсутствуют</p>
-      )}
-      <h3>Оставить отзыв</h3>
-      <ReviewForm addReview={addReview} />
-    </>
+    <div>
+      <Name name={restaurant.name} />
+
+      <h3>Меню:</h3>
+      {menuItems.map((dish) => (
+        <Menu key={dish.id} menu={dish} />
+      ))}
+
+      <h3>Отзывы:</h3>
+      <ul>
+        {reviews.map((review) => (
+          <Reviews key={review.id} review={review} />
+        ))}
+      </ul>
+    </div>
   );
 };
 
-export default Restaurant;
+export default RestaurantComponent;

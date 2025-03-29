@@ -5,9 +5,9 @@ import 'normalize.css';
 import './styles/global.css';
 import './styles/variables.css';
 import Layout from './components/Layout/Layout';
-import RestaurantsContainer from './components/Restaurant/RestaurantsContainer';
 import { ThemeProvider } from './context/ThemeProvider';
 import { UserProvider } from './context/UserProvider';
+import RestaurantsTabs from './components/Restaurant/RestaurantsTabs';
 
 const App = () => {
   return (
@@ -15,7 +15,7 @@ const App = () => {
       <ThemeProvider>
         <UserProvider>
           <Layout title='Рестораны'>
-            <RestaurantsContainer />
+            <RestaurantsTabs />
           </Layout>
         </UserProvider>
       </ThemeProvider>
