@@ -1,4 +1,4 @@
-import { createSlice, createSelector } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { normalizedUsers } from '../../../materials/normalized-mock';
 
 const initialState = {
@@ -18,9 +18,7 @@ export const usersSlice = createSlice({
   },
 });
 
-const selectUsersState = (state) => state.users;
-
-export const selectUserIds = createSelector([selectUsersState], (users) => users.ids);
-
 export const { selectUserById } = usersSlice.selectors;
 export default usersSlice.reducer;
+
+export const selectUsersEntities = (state) => state.users.entities;

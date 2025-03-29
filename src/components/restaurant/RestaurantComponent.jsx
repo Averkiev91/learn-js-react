@@ -1,23 +1,34 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import Name from './Name';
-import Menu from './Menu';
-import Reviews from './Reviews';
+import Name from '../Name/Name';
+import Menu from '../Menu/Menu';
+import Reviews from '../Review/Reviews';
+import { selectRestaurantById } from '../../store/slices/restaurantsSlice';
+import { selectDishesEntities } from '../../store/slices/dishesSlice';
+import { selectReviewsEntities } from '../../store/slices/reviewsSlice';
+import { selectUsersEntities } from '../../store/slices/usersSlice';
 
 const RestaurantComponent = ({ restaurantId }) => {
-  const restaurant = useSelector((state) => state.restaurants.entities[restaurantId]);
+  const restaurant = useSelector((state) => selectRestaurantById(state, restaurantId));
+  const dishesEntities = useSelector(selectDishesEntities);
+  const reviewsEntities = useSelector(selectReviewsEntities);
+  const usersEntities = useSelector(selectUsersEntities);
 
-  const menuItems = useSelector((state) =>
-    restaurant.menu.map((dishId) => state.dishes.entities[dishId])
-  );
+  const menuItems = useMemo(() => {
+    if (!restaurant) return [];
+    return restaurant.menu.map((dishId) => dishesEntities[dishId]);
+  }, [restaurant, dishesEntities]);
 
-  const reviews = useSelector((state) =>
-    restaurant.reviews.map((reviewId) => {
-      const review = state.reviews.entities[reviewId];
-      const user = state.users.entities[review.userId];
+  const reviews = useMemo(() => {
+    if (!restaurant) return [];
+    return restaurant.reviews.map((reviewId) => {
+      const review = reviewsEntities[reviewId];
+      const user = usersEntities[review.userId];
       return { ...review, user: user.name };
-    })
-  );
+    });
+  }, [restaurant, reviewsEntities, usersEntities]);
+
+  if (!restaurant) return null;
 
   return (
     <div>

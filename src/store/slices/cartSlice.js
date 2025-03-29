@@ -31,4 +31,6 @@ const selectCartSlice = (state) => state.cart;
 
 export const selectCartItemsIds = createSelector([selectCartSlice], (cart) => Object.keys(cart));
 
+export const selectCartItems = selectCartSlice;
+
 export default cartSlice.reducer;
