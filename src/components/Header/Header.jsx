@@ -1,9 +1,9 @@
 import React from 'react';
-import ThemeToggleButton from './ThemeToggleButton';
-import LoginForm from './LoginForm';
-import UserPanel from './UserPanel';
+import ThemeToggleButton from '../ToggleButton/ThemeToggleButton';
+import LoginForm from '../Loginform/LoginForm';
+import UserPanel from '../UserPanel/UserPanel';
 import { useUser } from '../../hooks/useUser';
-import styles from './layout.module.css';
+import styles from '../Layout/layout.module.css';
 
 const Header = () => {
   const { user } = useUser();
