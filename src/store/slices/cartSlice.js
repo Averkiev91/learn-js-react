@@ -27,10 +27,15 @@ export const cartSlice = createSlice({
 export const { selectAmountByItemId } = cartSlice.selectors;
 export const { addToCart, removeFromCart } = cartSlice.actions;
 
-const selectCartSlice = (state) => state.cart;
+export const selectCartSlice = (state) => state.cart;
 
 export const selectCartItemsIds = createSelector([selectCartSlice], (cart) => Object.keys(cart));
 
-export const selectCartItems = selectCartSlice;
+export const selectCartItemsArray = createSelector([selectCartSlice], (cart) =>
+  Object.entries(cart).map(([itemId, amount]) => ({
+    itemId,
+    amount,
+  }))
+);
 
 export default cartSlice.reducer;

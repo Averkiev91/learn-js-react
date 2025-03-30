@@ -15,10 +15,9 @@ export const usersSlice = createSlice({
   reducers: {},
   selectors: {
     selectUserById: (state, id) => state.entities[id],
+    selectUsersEntities: (state) => state.entities,
   },
 });
 
 export const { selectUserById } = usersSlice.selectors;
 export default usersSlice.reducer;
-
-export const selectUsersEntities = (state) => state.users.entities;

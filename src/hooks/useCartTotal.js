@@ -1,23 +1,21 @@
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import { selectCartItemsIds, selectCartItems } from '../store/slices/cartSlice';
+import { selectCartItemsArray } from '../store/slices/cartSlice';
 import { selectDishesEntities } from '../store/slices/dishesSlice';
 
 export const useCartTotal = () => {
-  const cartItemIds = useSelector(selectCartItemsIds);
+  const cartItems = useSelector(selectCartItemsArray);
   const dishes = useSelector(selectDishesEntities);
-  const cartItems = useSelector(selectCartItems);
 
   const totalSum = useMemo(() => {
-    return cartItemIds.reduce((sum, id) => {
-      const amount = cartItems[id] || 0;
-      const dish = dishes[id];
+    return cartItems.reduce((sum, { itemId, amount }) => {
+      const dish = dishes[itemId];
       if (dish) {
         return sum + amount * dish.price;
       }
       return sum;
     }, 0);
-  }, [cartItemIds, dishes, cartItems]);
+  }, [cartItems, dishes]);
 
   return totalSum;
 };

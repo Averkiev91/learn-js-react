@@ -14,14 +14,13 @@ const CartItemContainer = ({ id }) => {
     return null;
   }
 
-  const dishName = dish.name;
-  const price = dish.price;
+  const { name, price } = dish;
 
   const cartItemProps = {
     amount,
-    dishName,
-    price,
     totalPrice,
+    name,
+    price,
   };
 
   return <CartItem {...cartItemProps} />;

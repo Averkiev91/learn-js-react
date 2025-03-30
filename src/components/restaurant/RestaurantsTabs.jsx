@@ -7,15 +7,11 @@ const RestaurantsTabs = () => {
 
   const [activeRestaurantId, setActiveRestaurantId] = useState(restaurants.ids[0]);
 
-  const handleTabClick = (id) => {
-    setActiveRestaurantId(id);
-  };
-
   return (
     <div>
       <div>
         {restaurants.ids.map((id) => (
-          <button key={id} onClick={() => handleTabClick(id)}>
+          <button key={id} onClick={() => setActiveRestaurantId(id)}>
             {restaurants.entities[id].name}
           </button>
         ))}

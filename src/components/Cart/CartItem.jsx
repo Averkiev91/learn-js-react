@@ -1,9 +1,9 @@
 import React from 'react';
 
-const CartItem = ({ amount, dishName, price, totalPrice }) => {
+const CartItem = ({ amount, totalPrice, name, price }) => {
   return (
     <>
-      <p>{dishName}:</p>
+      <p>{name}:</p>
       <span>
         {amount} шт. × {price} = {totalPrice} ₽
       </span>
