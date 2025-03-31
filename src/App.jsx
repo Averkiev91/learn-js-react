@@ -10,6 +10,7 @@ import { store } from './store/store';
 import { BrowserRouter, Navigate, Outlet, Route, Routes } from 'react-router';
 import { HomePage } from './pages/HomePage';
 import { RestaurantPage } from './pages/RestaurantPage';
+import { DishPage } from './pages/DishPage';
 
 import Layout from './components/Layout/Layout';
 import { ThemeProvider } from './context/ThemeProvider';
@@ -27,6 +28,7 @@ const App = () => {
                 <Route path='/restaurant' element={<RestaurantPage />}>
                   <Route path=':restaurantId' element={<RestaurantPage />} />
                 </Route>
+                <Route path='/dish/:dishId' element={<DishPage />} />
               </Route>
               <Route
                 path='about'

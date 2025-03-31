@@ -10,7 +10,7 @@ const MenuItemContainer = ({ dishId }) => {
     return null;
   }
 
-  return <Menu menu={dish} />;
+  return <Menu menu={dish} dishId={dishId} />;
 };
 
 export default MenuItemContainer;
