@@ -1,10 +1,17 @@
 import { useParams } from 'react-router';
-import ReviewItemsContainer from '../components/Review/ReviewItemsContainer';
+import ReviewItemsContainer from '../components/Review/ReviewsContainer';
 
-export const MenuPage = () => {
-  const { reviewIds } = useParams();
+export const ReviewsPage = () => {
+  const { restaurantId } = useParams();
+  const reviewIds = location.state?.reviewIds;
 
   return (
-    <>{reviewIds ? <ReviewItemsContainer reviewIds={reviewIds} /> : <ReviewItemsContainer />}</>
+    <>
+      {restaurantId && reviewIds ? (
+        <ReviewItemsContainer restaurantId={restaurantId} reviewIds={reviewIds} />
+      ) : (
+        <ReviewItemsContainer />
+      )}
+    </>
   );
 };

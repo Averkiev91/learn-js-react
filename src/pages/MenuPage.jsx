@@ -2,7 +2,16 @@ import { useParams } from 'react-router';
 import RestaurantMenu from '../components/Restaurant/RestaurantMenu';
 
 export const MenuPage = () => {
-  const { menuId } = useParams();
+  const { restaurantId } = useParams();
+  const menuItems = location.state?.menuItems;
 
-  return <>{menuId ? <RestaurantMenu menuId={menuId} /> : <RestaurantMenu />}</>;
+  return (
+    <>
+      {restaurantId && menuItems ? (
+        <RestaurantMenu restaurantId={restaurantId} menuItems={menuItems} />
+      ) : (
+        <RestaurantMenu />
+      )}
+    </>
+  );
 };

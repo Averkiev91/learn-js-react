@@ -11,6 +11,8 @@ import { BrowserRouter, Navigate, Outlet, Route, Routes } from 'react-router';
 import { HomePage } from './pages/HomePage';
 import { RestaurantPage } from './pages/RestaurantPage';
 import { DishPage } from './pages/DishPage';
+import { MenuPage } from './pages/MenuPage';
+import { ReviewsPage } from './pages/ReviewsPage';
 
 import Layout from './components/Layout/Layout';
 import { ThemeProvider } from './context/ThemeProvider';
@@ -26,7 +28,11 @@ const App = () => {
               <Route element={<Layout title='Рестораны' />}>
                 <Route index element={<HomePage />} />
                 <Route path='/restaurant' element={<RestaurantPage />}>
-                  <Route path=':restaurantId' element={<RestaurantPage />} />
+                  <Route path=':restaurantId' element={<Outlet />}>
+                    <Route index element={<RestaurantPage />} />
+                    <Route path='menu' element={<MenuPage />} />
+                    <Route path='reviews' element={<ReviewsPage />} />
+                  </Route>
                 </Route>
                 <Route path='/dish/:dishId' element={<DishPage />} />
               </Route>
