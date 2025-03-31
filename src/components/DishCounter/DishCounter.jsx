@@ -1,14 +1,11 @@
-import React, { useState, useCallback } from 'react';
-import Counter from '../Restaurant/Counter';
+import React from 'react';
+import Counter from '../Counter/Counter';
 import { useUser } from '../../hooks/useUser';
+import { useCartItem } from '../../hooks/useCartItem';
 
-const DishCounter = () => {
-  const [dishCount, setDishCount] = useState(0);
+const DishCounter = ({ dishId }) => {
   const { user } = useUser();
-
-  const handleDishCountChange = useCallback((newCount) => {
-    setDishCount(Number(newCount));
-  }, []);
+  const { amount, handleDishCountChange } = useCartItem(dishId);
 
   if (!user) {
     return <p>Не авторизован</p>;
@@ -16,7 +13,7 @@ const DishCounter = () => {
 
   return (
     <div>
-      <Counter value={dishCount} onChange={handleDishCountChange} />
+      <Counter value={amount} onChange={handleDishCountChange} />
     </div>
   );
 };

@@ -1,18 +1,23 @@
 import React, { useState, useCallback } from 'react';
 import { UserContext } from './UserContext';
-import { mockUsers } from '../../materials/mockUsers';
+import { useSelector } from 'react-redux';
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const users = useSelector((state) => state.users.entities);
 
-  const login = useCallback((name) => {
-    const user = mockUsers.find((user) => user.name === name);
-    if (user) {
-      setUser(user);
-      return true;
-    }
-    return false;
-  }, []);
+  const login = useCallback(
+    (name) => {
+      const allUsers = Object.values(users);
+      const foundUser = allUsers.find((user) => user.name === name);
+      if (foundUser) {
+        setUser(foundUser);
+        return true;
+      }
+      return false;
+    },
+    [users]
+  );
 
   const logout = useCallback(() => {
     setUser(null);

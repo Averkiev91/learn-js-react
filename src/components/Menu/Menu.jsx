@@ -10,7 +10,7 @@ const Menu = ({ menu }) => {
         <li>{`Ingredients: ${menu.ingredients}`}</li>
       </ul>
       <p>{`Количество блюд:`}</p>
-      <DishCounter />
+      <DishCounter dishId={menu.id} />
     </div>
   );
 };
