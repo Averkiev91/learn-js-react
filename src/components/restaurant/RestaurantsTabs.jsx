@@ -1,24 +1,27 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
 import RestaurantComponent from './RestaurantComponent';
+import RestaurantTabButton from '../RestaurantTabButton/RestaurantTabButton';
+import useRestaurantTabs from '../../hooks/useRestaurantTabs';
 
-const RestaurantsTabs = () => {
-  const restaurants = useSelector((state) => state.restaurants);
-
-  const [activeRestaurantId, setActiveRestaurantId] = useState(restaurants.ids[0]);
+const RestaurantsTabs = ({ id }) => {
+  const { ids, entities, activeRestaurantId, handleRestaurantClick } = useRestaurantTabs(id);
 
   return (
-    <div>
-      <div>
-        {restaurants.ids.map((id) => (
-          <button key={id} onClick={() => setActiveRestaurantId(id)}>
-            {restaurants.entities[id].name}
-          </button>
-        ))}
-      </div>
-
+    <>
+      {ids.map((restaurantId) => {
+        const restaurant = entities[restaurantId];
+        return (
+          <RestaurantTabButton
+            key={restaurantId}
+            restaurantId={restaurantId}
+            activeRestaurantId={activeRestaurantId}
+            name={restaurant.name}
+            onClick={handleRestaurantClick}
+          />
+        );
+      })}
       <RestaurantComponent restaurantId={activeRestaurantId} />
-    </div>
+    </>
   );
 };
 
