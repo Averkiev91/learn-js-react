@@ -1,5 +1,5 @@
 import React from 'react';
-import RestaurantComponent from './RestaurantComponent';
+import RestaurantContainer from './RestaurantContainer';
 import RestaurantTabButton from '../RestaurantTabButton/RestaurantTabButton';
 import useRestaurantTabs from '../../hooks/useRestaurantTabs';
 
@@ -20,7 +20,7 @@ const RestaurantsTabs = ({ id }) => {
           />
         );
       })}
-      <RestaurantComponent restaurantId={activeRestaurantId} />
+      <RestaurantContainer restaurantId={activeRestaurantId} />
     </>
   );
 };
