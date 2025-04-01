@@ -4,5 +4,5 @@ import MenuItemContainer from '../components/Menu/MenuItemContainer';
 export const DishPage = () => {
   const { dishId } = useParams();
 
-  return <>{dishId ? <MenuItemContainer dishId={dishId} /> : <MenuItemContainer />}</>;
+  return <MenuItemContainer dishId={dishId} />;
 };
