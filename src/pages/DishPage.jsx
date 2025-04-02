@@ -1,8 +1,13 @@
 import { useParams } from 'react-router';
-import MenuItemContainer from '../components/Menu/MenuItemContainer';
+import DishCounter from '../components/DishCounter/DishCounter';
 
 export const DishPage = () => {
   const { dishId } = useParams();
 
-  return <MenuItemContainer dishId={dishId} />;
+  return (
+    <div>
+      <p>{`Количество блюд:`}</p>
+      <DishCounter dishId={dishId} />
+    </div>
+  );
 };

@@ -1,16 +1,12 @@
 import { useParams } from 'react-router';
-import ReviewItemsContainer from '../components/Review/ReviewsContainer';
+import { useSelector } from 'react-redux';
+import { selectRestaurantById } from '../store/slices/restaurantsSlice';
+import Reviews from '../components/Reviews/Reviews';
 
 export const ReviewsPage = () => {
   const { restaurantId } = useParams();
+  const restaurant = useSelector((state) => selectRestaurantById(state, restaurantId));
+  const { reviews } = restaurant;
 
-  return (
-    <>
-      {restaurantId ? (
-        <ReviewItemsContainer restaurantId={restaurantId} />
-      ) : (
-        <ReviewItemsContainer />
-      )}
-    </>
-  );
+  return <Reviews reviews={reviews} />;
 };

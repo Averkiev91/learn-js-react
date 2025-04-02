@@ -1,8 +1,11 @@
 import { useParams } from 'react-router';
-import RestaurantsTabs from '../components/Restaurant/RestaurantsTabs';
+import Restaurant from '../components/Restaurant/Restaurant';
 
 export const RestaurantPage = () => {
   const { restaurantId } = useParams();
-
-  return <>{restaurantId ? <RestaurantsTabs id={restaurantId} /> : <RestaurantsTabs />}</>;
+  return (
+    <>
+      <Restaurant restaurantId={restaurantId} />
+    </>
+  );
 };

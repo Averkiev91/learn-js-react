@@ -5,7 +5,7 @@ export const HomePage = () => {
   return (
     <div>
       <p>Добро пожаловать!</p>
-      <Link to='/restaurant'>Перейти к ресторану</Link>
+      <Link to='/restaurants'>Перейти к ресторану</Link>
     </div>
   );
 };

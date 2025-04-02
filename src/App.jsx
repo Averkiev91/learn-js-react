@@ -9,6 +9,7 @@ import { store } from './store/store';
 
 import { BrowserRouter, Navigate, Route, Routes, Outlet } from 'react-router';
 import { HomePage } from './pages/HomePage';
+import { RestaurantsPage } from './pages/RestaurantsPage';
 import { RestaurantPage } from './pages/RestaurantPage';
 import { DishPage } from './pages/DishPage';
 import { MenuPage } from './pages/MenuPage';
@@ -27,7 +28,7 @@ const App = () => {
             <Routes>
               <Route element={<Layout title='Рестораны' />}>
                 <Route index element={<HomePage />} />
-                <Route path='/restaurant' element={<RestaurantPage />}>
+                <Route path='/restaurants' element={<RestaurantsPage />}>
                   <Route path=':restaurantId' element={<RestaurantPage />}>
                     <Route path='menu' element={<MenuPage />} />
                     <Route path='reviews' element={<ReviewsPage />} />

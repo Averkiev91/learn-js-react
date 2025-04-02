@@ -1,8 +1,11 @@
 import { useParams } from 'react-router';
-import RestaurantMenu from '../components/Restaurant/RestaurantMenu';
+import { useSelector } from 'react-redux';
+import { selectRestaurantById } from '../store/slices/restaurantsSlice';
+import Menu from '../components/Menu/Menu';
 
 export const MenuPage = () => {
   const { restaurantId } = useParams();
+  const { menu } = useSelector((state) => selectRestaurantById(state, restaurantId));
 
-  return <>{restaurantId ? <RestaurantMenu restaurantId={restaurantId} /> : <RestaurantMenu />}</>;
+  return <Menu menu={menu} />;
 };

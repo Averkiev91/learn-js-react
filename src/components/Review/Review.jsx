@@ -1,4 +1,4 @@
-const ReviewListItem = ({ review }) => {
+const Review = ({ review }) => {
   return (
     <li>
       {review.user}: {review.text} (Рейтинг: {review.rating})
@@ -6,4 +6,4 @@ const ReviewListItem = ({ review }) => {
   );
 };
 
-export default ReviewListItem;
+export default Review;
