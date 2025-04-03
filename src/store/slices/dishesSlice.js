@@ -22,12 +22,11 @@ export const dishesSlice = createSlice({
 
 export const { selectDishes, selectDishesIds, selectDishById } = dishesSlice.selectors;
 
-export const selectRestaurantDishes = createSelector(
-  [selectDishes, (state, menu) => menu],
-  (dishes, menu) => {
-    if (!menu || !dishes) return [];
-    return menu.map((dishId) => dishes[dishId]).filter((dish) => dish !== undefined);
-  }
-);
+export const selectMenu = (state, menu) => menu;
+
+export const selectRestaurantDishes = createSelector([selectDishes, selectMenu], (dishes, menu) => {
+  if (!menu || !dishes) return [];
+  return menu.map((dishId) => dishes[dishId]).filter((dish) => dish !== undefined);
+});
 
 export default dishesSlice.reducer;
