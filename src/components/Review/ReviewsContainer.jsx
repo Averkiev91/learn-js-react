@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectReviewById } from '../../store/slices/reviewsSlice';
 import { selectUserById } from '../../store/slices/usersSlice';
-import Reviews from './Reviews';
+import Review from './Review';
 
 const ReviewItemsContainer = ({ reviewId }) => {
   const review = useSelector((state) => selectReviewById(state, reviewId));
@@ -17,7 +17,7 @@ const ReviewItemsContainer = ({ reviewId }) => {
     user: user.name,
   };
 
-  return <Reviews review={reviewWithUser} />;
+  return <Review review={reviewWithUser} />;
 };
 
 export default ReviewItemsContainer;

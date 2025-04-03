@@ -1,16 +1,20 @@
 import React from 'react';
+import { NavLink } from 'react-router';
 import DishCounter from '../DishCounter/DishCounter';
+import { useSelector } from 'react-redux';
+import { selectRestaurantDishes } from '../../store/slices/dishesSlice';
+import NavigationTab from '../NavigationTab/NavigationTab';
 
 const Menu = ({ menu }) => {
+  const restaurantDishes = useSelector((state) => selectRestaurantDishes(state, menu));
   return (
     <div>
-      <ul>
-        <li>{`Name: ${menu.name}`}</li>
-        <li>{`Price: ${menu.price}`}</li>
-        <li>{`Ingredients: ${menu.ingredients}`}</li>
-      </ul>
-      <p>{`Количество блюд:`}</p>
-      <DishCounter dishId={menu.id} />
+      <h3>Меню</h3>
+      <div style={{ display: 'flex', gap: '10px' }}>
+        {restaurantDishes.map(({ id, name }) => (
+          <NavigationTab key={id} path={`/dish/${id}`} title={name} />
+        ))}
+      </div>
     </div>
   );
 };
