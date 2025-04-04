@@ -1,6 +1,10 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart, removeFromCart, selectAmountByItemId } from '../store/slices/cartSlice';
+import {
+  addToCart,
+  removeFromCart,
+  selectAmountByItemId,
+} from '../../redux/entities/cart/cartSlice';
 
 export const useCartItem = (dishId) => {
   const dispatch = useDispatch();

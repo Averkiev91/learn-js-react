@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import ThemeToggleButton from '../ToggleButton/ThemeToggleButton';
 import LoginForm from '../Loginform/LoginForm';
 import UserPanel from '../UserPanel/UserPanel';
-import { useUser } from '../../hooks/useUser';
+import { useUser } from '../../redux/hooks/useUser';
 import styles from '../Layout/layout.module.css';
 
 const Header = () => {

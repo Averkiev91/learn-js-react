@@ -30,3 +30,5 @@ export const requestSlice = createSlice({
 });
 
 export const { selectIsLoading, selectRequestStatus } = requestSlice.selectors;
+
+export default requestSlice.reducer;

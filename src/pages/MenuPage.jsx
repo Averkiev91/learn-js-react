@@ -1,6 +1,6 @@
 import { useParams } from 'react-router';
 import { useSelector } from 'react-redux';
-import { selectRestaurantById } from '../store/slices/restaurantsSlice';
+import { selectRestaurantById } from '../redux/entities/restaurants/restaurantsSlice';
 import Menu from '../components/Menu/Menu';
 
 export const MenuPage = () => {

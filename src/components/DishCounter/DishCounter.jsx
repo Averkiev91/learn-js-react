@@ -1,7 +1,7 @@
 import React from 'react';
 import Counter from '../Counter/Counter';
-import { useUser } from '../../hooks/useUser';
-import { useCartItem } from '../../hooks/useCartItem';
+import { useUser } from '../../redux/hooks/useUser';
+import { useCartItem } from '../../redux/hooks/useCartItem';
 
 const DishCounter = ({ dishId }) => {
   const { user } = useUser();

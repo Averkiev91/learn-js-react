@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { selectRestaurantsIds } from '../store/slices/restaurantsSlice';
+import { selectRestaurantsIds } from '../redux/entities/restaurants/restaurantsSlice';
 import { Outlet, useNavigate, useLocation } from 'react-router';
 import RestaurantNavigation from '../components/RestaurantNavigation/RestaurantNavigation';
 
