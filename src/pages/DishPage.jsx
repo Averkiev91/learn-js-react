@@ -1,5 +1,6 @@
 import { useParams } from 'react-router';
 import DishCounter from '../components/DishCounter/DishCounter';
+import Dish from '../components/Dish/Dish';
 import { useRequest } from '../redux/hooks/useRequest';
 import { getDishById } from '../redux/entities/dishes/getDishById';
 
@@ -24,6 +25,7 @@ export const DishPage = () => {
       return (
         <div>
           <p>{`Количество блюд:`}</p>
+          <Dish dishId={dishId} />
           <DishCounter dishId={dishId} />
         </div>
       );
