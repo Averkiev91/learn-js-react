@@ -5,7 +5,7 @@ import './styles/global.css';
 import './styles/variables.css';
 
 import { Provider } from 'react-redux';
-import { store } from './store/store';
+import { store } from './redux/store';
 
 import { BrowserRouter, Navigate, Route, Routes, Outlet } from 'react-router';
 import { HomePage } from './pages/HomePage';

@@ -1,4 +1,4 @@
-import { selectRestaurantById } from '../../store/slices/restaurantsSlice';
+import { selectRestaurantById } from '../../redux/entities/restaurants/restaurantsSlice';
 import { useSelector } from 'react-redux';
 import NavigationTab from '../NavigationTab/NavigationTab';
 

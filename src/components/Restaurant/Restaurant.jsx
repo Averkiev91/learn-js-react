@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { selectRestaurantById } from '../../store/slices/restaurantsSlice';
+import { selectRestaurantById } from '../../redux/entities/restaurants/restaurantsSlice';
 import { Outlet } from 'react-router';
 
 import NavigationTab from '../NavigationTab/NavigationTab';

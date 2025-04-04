@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from '../../redux/hooks/useTheme';
 
 const ThemeToggleButton = () => {
   const { theme, toggleTheme } = useTheme();

@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import { selectAmountByItemId } from '../../store/slices/cartSlice';
-import { selectDishById } from '../../store/slices/dishesSlice';
+import { selectAmountByItemId } from './../../redux/entities/cart/cartSlice';
+import { selectDishById } from './../../redux/entities/dishes/dishesSlice';
 import CartItem from './CartItem';
 
 const CartItemContainer = ({ id }) => {

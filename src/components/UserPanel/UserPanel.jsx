@@ -1,5 +1,5 @@
 import React from 'react';
-import { useUser } from '../../hooks/useUser';
+import { useUser } from '../../redux/hooks/useUser';
 
 const UserPanel = () => {
   const { user, logout } = useUser();

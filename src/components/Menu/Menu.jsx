@@ -1,8 +1,6 @@
 import React from 'react';
-import { NavLink } from 'react-router';
-import DishCounter from '../DishCounter/DishCounter';
 import { useSelector } from 'react-redux';
-import { selectRestaurantDishes } from '../../store/slices/dishesSlice';
+import { selectRestaurantDishes } from '../../redux/entities/dishes/dishesSlice';
 import NavigationTab from '../NavigationTab/NavigationTab';
 
 const Menu = ({ menu }) => {
