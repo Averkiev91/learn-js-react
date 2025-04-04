@@ -4,7 +4,6 @@ import { selectRequestStatus } from '../entities/request/slice';
 
 export const useRequest = (thunk, ...params) => {
   const dispatch = useDispatch();
-
   const [request, setRequest] = useState();
 
   const requestStatus = useSelector((state) => selectRequestStatus(state, request?.requestId));

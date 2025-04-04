@@ -6,11 +6,10 @@ const entityAdapter = createEntityAdapter();
 export const usersSlice = createSlice({
   name: 'users',
   initialState: entityAdapter.getInitialState(),
-  reducers: {},
   selectors: {
-    selectUserById: (state, id) => state.entities[id],
-    selectUsersEntities: (state) => state.entities,
     selectUsersIds: (state) => state.ids,
+    selectUserById: (state, id) => state.entities[id],
+    selectAllUsers: (state) => Object.values(state.entities),
   },
   extraReducers: (builder) =>
     builder.addCase(getUsers.fulfilled, (state, { payload }) => {
@@ -18,5 +17,6 @@ export const usersSlice = createSlice({
     }),
 });
 
-export const { selectUserById, selectUsersEntities, selectUsersIds } = usersSlice.selectors;
+export const { selectUsersIds, selectUserById, selectAllUsers } = usersSlice.selectors;
+
 export default usersSlice.reducer;

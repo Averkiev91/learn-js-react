@@ -1,4 +1,5 @@
 import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
+import { getRestaurantReviews } from './getRestaurantReviews';
 
 const entityAdapter = createEntityAdapter();
 
@@ -7,12 +8,17 @@ export const reviewsSlice = createSlice({
   initialState: entityAdapter.getInitialState(),
   reducers: {},
   selectors: {
-    selectReviewById: (state, id) => state.entities[id],
     selectReviewsIds: (state) => state.ids,
-    selectReviewsEntities: (state) => state.entities,
+    selectReviewById: (state, id) => state.entities[id],
+    selectAllReviews: (state) => state.entities,
+  },
+  extraReducers: (builder) => {
+    builder.addCase(getRestaurantReviews.fulfilled, (state, { payload }) => {
+      entityAdapter.upsertMany(state, payload);
+    });
   },
 });
 
-export const { selectReviewById, selectReviewsEntities, selectReviewsIds } = reviewsSlice.selectors;
+export const { selectReviewsIds, selectReviewById, selectAllReviews } = reviewsSlice.selectors;
 
 export default reviewsSlice.reducer;
