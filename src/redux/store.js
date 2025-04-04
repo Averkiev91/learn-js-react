@@ -5,6 +5,7 @@ import reviewsReducer from './entities/reviews/reviewsSlice';
 import usersReducer from './entities/users/usersSlice';
 import cartReducer from './entities/cart/cartSlice';
 import requestReducer from './entities/request/slice';
+import loggerMiddleware from './middleware/loggerMiddleware';
 
 export const store = configureStore({
   reducer: {
@@ -15,4 +16,5 @@ export const store = configureStore({
     cart: cartReducer,
     request: requestReducer,
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(loggerMiddleware),
 });

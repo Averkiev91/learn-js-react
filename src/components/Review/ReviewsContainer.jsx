@@ -6,7 +6,7 @@ import Review from './Review';
 
 const ReviewItemsContainer = ({ reviewId }) => {
   const review = useSelector((state) => selectReviewById(state, reviewId));
-  const user = useSelector((state) => selectUserById(state, review.userId));
+  const user = useSelector((state) => selectUserById(state, review?.userId));
 
   if (!review || !user) {
     return null;

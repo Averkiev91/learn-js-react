@@ -8,18 +8,14 @@ import { getRestaurantReviews } from '../redux/entities/reviews/getRestaurantRev
 
 import { useRequest } from '../redux/hooks/useRequest';
 import { getUsers } from '../redux/entities/users/getUsers';
-import { selectUsersIds } from '../redux/entities/users/usersSlice';
 
 export const ReviewsPage = () => {
   const { restaurantId } = useParams();
   const requestStatusReviews = useRequest(getRestaurantReviews, restaurantId);
 
   useRequest(getUsers);
-  console.log('useRequest', useRequest(getUsers));
 
   const reviews = useSelector((state) => selectRestaurantReviews(state, restaurantId));
-  const users = useSelector((state) => selectUsersIds(state));
-  console.log('users:', users);
 
   switch (requestStatusReviews) {
     case 'pending':

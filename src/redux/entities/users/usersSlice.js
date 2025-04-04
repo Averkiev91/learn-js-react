@@ -9,7 +9,7 @@ export const usersSlice = createSlice({
   selectors: {
     selectUsersIds: (state) => state.ids,
     selectUserById: (state, id) => state.entities[id],
-    selectAllUsers: (state) => Object.values(state.entities),
+    selectAllUsers: (state) => state.entities,
   },
   extraReducers: (builder) =>
     builder.addCase(getUsers.fulfilled, (state, { payload }) => {
