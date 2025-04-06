@@ -31,7 +31,7 @@ export const ReviewsPage = () => {
         </div>
       );
     default:
-      return reviews && reviews.length > 0 ? (
+      return reviews?.length > 0 ? (
         <Reviews reviews={reviews} />
       ) : (
         <div>

@@ -21,10 +21,6 @@ export const RestaurantPage = () => {
         </div>
       );
     default:
-      return (
-        <>
-          <Restaurant restaurantId={restaurantId} />
-        </>
-      );
+      return <Restaurant restaurantId={restaurantId} />;
   }
 };

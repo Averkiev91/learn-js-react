@@ -4,7 +4,6 @@ import { selectDishById } from '../../redux/entities/dishes/dishesSlice';
 
 const Dish = ({ dishId }) => {
   const dish = useSelector((state) => selectDishById(state, dishId));
-  console.log('dish:', dish);
 
   if (!dish?.name) {
     return null;
