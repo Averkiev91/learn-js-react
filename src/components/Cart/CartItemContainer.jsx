@@ -1,14 +1,14 @@
 import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { selectAmountByItemId } from './../../redux/entities/cart/cartSlice';
-import { selectDishById } from './../../redux/entities/dishes/dishesSlice';
+import { useGetDishByDishIdQuery } from '../../redux/services/api';
 import CartItem from './CartItem';
 
 const CartItemContainer = ({ id }) => {
   const amount = useSelector((state) => selectAmountByItemId(state, id));
-  const dish = useSelector((state) => selectDishById(state, id));
+  const { data: dish } = useGetDishByDishIdQuery(id);
 
-  const totalPrice = useMemo(() => amount * dish?.price, [amount, dish?.price]);
+  const totalPrice = useMemo(() => (dish ? amount * dish.price : 0), [amount, dish]);
 
   if (!dish) {
     return null;

@@ -1,33 +1,33 @@
 import { useParams } from 'react-router';
 import DishCounter from '../components/DishCounter/DishCounter';
 import Dish from '../components/Dish/Dish';
-import { useRequest } from '../redux/hooks/useRequest';
-import { getDishById } from '../redux/entities/dishes/getDishById';
+import { useGetDishByDishIdQuery } from '../redux/services/api';
 
 export const DishPage = () => {
   const { dishId } = useParams();
-  const requestStatus = useRequest(getDishById, dishId);
+  const { data: dish, isLoading, isError } = useGetDishByDishIdQuery(dishId);
 
-  switch (requestStatus) {
-    case 'pending':
-      return (
-        <div>
-          <p>Загрузка</p>
-        </div>
-      );
-    case 'rejected':
-      return (
-        <div>
-          <p>Ошибка</p>
-        </div>
-      );
-    default:
-      return (
-        <div>
-          <p>{`Количество блюд:`}</p>
-          <Dish dishId={dishId} />
-          <DishCounter dishId={dishId} />
-        </div>
-      );
+  if (isLoading) {
+    return (
+      <div>
+        <p>Загрузка</p>
+      </div>
+    );
   }
+
+  if (isError) {
+    return (
+      <div>
+        <p>Ошибка</p>
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <p>{`Количество блюд:`}</p>
+      <Dish dish={dish} />
+      <DishCounter dishId={dishId} />
+    </div>
+  );
 };

@@ -1,4 +1,3 @@
-import Review from '../Review/Review';
 import ReviewItemsContainer from '../Review/ReviewsContainer';
 
 const Reviews = ({ reviews }) => {
@@ -6,7 +5,7 @@ const Reviews = ({ reviews }) => {
     <div>
       <h3>Отзывы</h3>
       {reviews.map((review) => (
-        <ReviewItemsContainer key={review} reviewId={review} />
+        <ReviewItemsContainer key={review.id} review={review} />
       ))}
     </div>
   );

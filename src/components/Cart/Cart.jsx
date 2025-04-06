@@ -7,6 +7,7 @@ import { useCartTotal } from '../../redux/hooks/useCartTotal';
 const Cart = () => {
   const cartItemIds = useSelector(selectCartItemsIds);
   const totalSum = useCartTotal();
+  console.log(cartItemIds);
 
   if (cartItemIds.length === 0) {
     return (

@@ -1,11 +1,11 @@
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { selectCartItemsArray } from '../../redux/entities/cart/cartSlice';
-import { selectDishes } from '../../redux/entities/dishes/dishesSlice';
+import { selectDishesFromRTQ } from '../entities/dishes/rtqDishesSelectors';
 
 export const useCartTotal = () => {
   const cartItems = useSelector(selectCartItemsArray);
-  const dishes = useSelector(selectDishes);
+  const dishes = useSelector(selectDishesFromRTQ);
 
   const totalSum = useMemo(() => {
     return cartItems.reduce((sum, { itemId, amount }) => {
