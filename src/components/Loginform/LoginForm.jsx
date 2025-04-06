@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLoginForm } from '../../hooks/useLoginForm';
+import { useLoginForm } from '../../redux/hooks/useLoginForm';
 import '../../styles/global.css';
 
 const LoginForm = () => {

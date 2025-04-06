@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import { selectCartItemsArray } from '../store/slices/cartSlice';
-import { selectDishes } from '../store/slices/dishesSlice';
+import { selectCartItemsArray } from '../../redux/entities/cart/cartSlice';
+import { selectDishes } from '../../redux/entities/dishes/dishesSlice';
 
 export const useCartTotal = () => {
   const cartItems = useSelector(selectCartItemsArray);

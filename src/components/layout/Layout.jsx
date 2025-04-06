@@ -3,7 +3,7 @@ import { Outlet } from 'react-router';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import ProgressBar from '../ProgressBar/ProgressBar';
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from '../../redux/hooks/useTheme';
 import styles from './layout.module.css';
 import Cart from '../Cart/Cart';
 

@@ -1,30 +1,47 @@
 import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { selectRestaurantsIds } from '../store/slices/restaurantsSlice';
-import { Outlet, useNavigate, useLocation } from 'react-router';
+import { useRequest } from '../redux/hooks/useRequest';
+import { getRestaurants } from '../redux/entities/restaurants/getRestaurants';
+import { selectRestaurantsIds } from '../redux/entities/restaurants/restaurantsSlice';
+import { Outlet } from 'react-router';
 import RestaurantNavigation from '../components/RestaurantNavigation/RestaurantNavigation';
 
 export const RestaurantsPage = () => {
+  const requestStatus = useRequest(getRestaurants);
   const restaurantsIds = useSelector((state) => selectRestaurantsIds(state));
-  const navigate = useNavigate();
-  const location = useLocation();
 
-  useEffect(() => {
-    if (location.pathname === '/restaurants' && restaurantsIds.length > 0) {
-      navigate(`/restaurants/${restaurantsIds[0]}`);
-    }
-  }, [restaurantsIds, location.pathname, navigate]);
+  switch (requestStatus) {
+    case 'pending':
+      return (
+        <main>
+          <p>Загрузка</p>
+        </main>
+      );
+    case 'rejected':
+      return (
+        <main>
+          <p>Ошибка</p>
+        </main>
+      );
+    default:
+      if (!restaurantsIds.length) {
+        return (
+          <main>
+            <p>Ресторанов нет</p>
+          </main>
+        );
+      }
 
-  return (
-    <>
-      <nav style={{ display: 'flex', gap: '10px' }}>
-        {restaurantsIds.map((restaurantId) => (
-          <RestaurantNavigation key={restaurantId} restaurantId={restaurantId} />
-        ))}
-      </nav>
-      <main>
-        <Outlet />
-      </main>
-    </>
-  );
+      return (
+        <>
+          <nav style={{ display: 'flex', gap: '10px' }}>
+            {restaurantsIds.map((restaurantId) => (
+              <RestaurantNavigation key={restaurantId} restaurantId={restaurantId} />
+            ))}
+          </nav>
+          <main>
+            <Outlet />
+          </main>
+        </>
+      );
+  }
 };

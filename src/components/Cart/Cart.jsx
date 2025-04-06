@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import CartItemContainer from './CartItemContainer';
-import { selectCartItemsIds } from '../../store/slices/cartSlice';
-import { useCartTotal } from '../../hooks/useCartTotal';
+import { selectCartItemsIds } from '../../redux/entities/cart/cartSlice';
+import { useCartTotal } from '../../redux/hooks/useCartTotal';
 
 const Cart = () => {
   const cartItemIds = useSelector(selectCartItemsIds);
