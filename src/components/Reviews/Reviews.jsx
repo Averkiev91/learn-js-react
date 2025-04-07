@@ -3,7 +3,7 @@ import { useUser } from '../../redux/hooks/useUser';
 import ReviewItemsContainer from '../Review/ReviewsContainer';
 import AddReview from '../Review/AddReview';
 
-const Reviews = ({ reviews }) => {
+const Reviews = ({ reviews, restaurantId }) => {
   const { user } = useUser();
 
   return (
@@ -13,7 +13,7 @@ const Reviews = ({ reviews }) => {
         <ReviewItemsContainer key={review.id} review={review} />
       ))}
 
-      {user && <AddReview userId={user.id} />}
+      {user && <AddReview userId={user.id} restaurantId={restaurantId} />}
     </div>
   );
 };

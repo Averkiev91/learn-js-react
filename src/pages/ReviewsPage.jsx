@@ -29,7 +29,7 @@ export const ReviewsPage = () => {
   }
 
   return reviews?.length > 0 ? (
-    <Reviews reviews={reviews} />
+    <Reviews reviews={reviews} restaurantId={restaurantId} />
   ) : (
     <div>
       <p>Отзывов пока нет</p>

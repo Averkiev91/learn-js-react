@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { useAddReviewMutation } from '../../redux/services/api';
-import { useParams } from 'react-router';
 import Counter from '../Counter/Counter';
 
-const AddReview = ({ userId }) => {
-  const { restaurantId } = useParams();
+const AddReview = ({ userId, restaurantId }) => {
   const [addReview, { isLoading }] = useAddReviewMutation();
 
   const [text, setText] = useState('');
