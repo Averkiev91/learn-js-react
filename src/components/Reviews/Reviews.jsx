@@ -1,11 +1,8 @@
 import React from 'react';
-import { useUser } from '../../redux/hooks/useUser';
 import ReviewItemsContainer from '../Review/ReviewsContainer';
 import AddReview from '../Review/AddReview';
 
-const Reviews = ({ reviews, restaurantId }) => {
-  const { user } = useUser();
-
+const Reviews = ({ reviews, restaurantId, user }) => {
   return (
     <div>
       <h3>Отзывы</h3>

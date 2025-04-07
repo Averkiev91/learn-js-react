@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import { useUpdateReviewMutation } from '../../redux/services/api';
 import { useUser } from '../../redux/hooks/useUser';
-import Counter from '../Counter/Counter';
+import ReviewForm from './ReviewForm';
 
 const Review = ({ review }) => {
   const { user } = useUser();
   const [updateReview, { isLoading }] = useUpdateReviewMutation();
   const [isEditing, setIsEditing] = useState(false);
-  const [editedText, setEditedText] = useState(review.text);
-  const [editedRating, setEditedRating] = useState(review.rating);
 
   const isCurrentUserReview = user && user.id === review.userId;
 
@@ -18,48 +16,41 @@ const Review = ({ review }) => {
 
   const handleCancel = () => {
     setIsEditing(false);
-    setEditedText(review.text);
-    setEditedRating(review.rating);
   };
 
-  const handleSave = async () => {
-    try {
-      await updateReview({
-        reviewId: review.id,
-        review: {
-          text: editedText,
-          rating: Number(editedRating),
-        },
-      });
-      setIsEditing(false);
-    } catch (error) {
-      console.error('Ошибка при обновлении отзыва:', error);
-    }
+  const handleSave = async ({ text, rating }) => {
+    await updateReview({
+      reviewId: review.id,
+      review: {
+        text,
+        rating,
+        userId: review.userId,
+        restaurantId: review.restaurantId,
+      },
+    }).unwrap();
+    setIsEditing(false);
   };
 
   if (isEditing) {
     return (
       <li>
-        <div>
-          <textarea value={editedText} onChange={(e) => setEditedText(e.target.value)} required />
-        </div>
-        <div>
-          <label>
-            Рейтинг:
-            <Counter value={editedRating} onChange={setEditedRating} />
-          </label>
-        </div>
-        <button onClick={handleSave} disabled={isLoading}>
-          {isLoading ? 'Сохранение...' : 'Сохранить'}
-        </button>
-        <button onClick={handleCancel}>Отмена</button>
+        <ReviewForm
+          initialText={review.text}
+          initialRating={review.rating}
+          onSubmit={handleSave}
+          submitButtonText='Сохранить'
+          onCancel={handleCancel}
+          isLoading={isLoading}
+        />
       </li>
     );
   }
 
   return (
     <li>
-      {review.user}: {review.text} (Рейтинг: {review.rating})
+      <div>
+        <strong>{review.user || 'Аноним'}:</strong> {review.text} (Рейтинг: {review.rating})
+      </div>
       {isCurrentUserReview && <button onClick={handleEdit}>*</button>}
     </li>
   );

@@ -1,52 +1,38 @@
 import React, { useState } from 'react';
 import { useAddReviewMutation } from '../../redux/services/api';
-import Counter from '../Counter/Counter';
+import ReviewForm from './ReviewForm';
 
 const AddReview = ({ userId, restaurantId }) => {
   const [addReview, { isLoading }] = useAddReviewMutation();
+  const [shouldReset, setShouldReset] = useState(false);
 
-  const [text, setText] = useState('');
-  const [rating, setRating] = useState(5);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!text.trim()) return;
-
+  const handleSubmit = async ({ text, rating }) => {
     await addReview({
       restaurantId,
       review: {
         userId,
         text,
-        rating: Number(rating),
+        rating,
       },
-    });
-    setText('');
-    setRating(5);
+    }).unwrap();
+
+    setShouldReset(true);
+
+    setTimeout(() => {
+      setShouldReset(false);
+    }, 100);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <textarea
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          placeholder='Напишите отзыв'
-          required
-        />
-      </div>
-
-      <div>
-        <label>
-          Рейтинг:
-          <Counter value={rating} onChange={setRating} />
-        </label>
-      </div>
-
-      <button type='submit' disabled={isLoading}>
-        {isLoading ? 'Загрузка...' : 'Добавить отзыв'}
-      </button>
-    </form>
+    <div>
+      <h4>Добавить отзыв</h4>
+      <ReviewForm
+        onSubmit={handleSubmit}
+        submitButtonText='Добавить отзыв'
+        isLoading={isLoading}
+        shouldReset={shouldReset}
+      />
+    </div>
   );
 };
 

@@ -1,11 +1,13 @@
 import { useParams } from 'react-router';
-
+import { useUser } from '../redux/hooks/useUser';
 import Reviews from '../components/Reviews/Reviews';
+import AddReview from '../components/Review/AddReview';
 
 import { useGetReviewsByRestaurantIdQuery } from '../redux/services/api';
 
 export const ReviewsPage = () => {
   const { restaurantId } = useParams();
+  const { user } = useUser();
   const {
     data: reviews,
     isLoading: isReviewsLoading,
@@ -29,10 +31,11 @@ export const ReviewsPage = () => {
   }
 
   return reviews?.length > 0 ? (
-    <Reviews reviews={reviews} restaurantId={restaurantId} />
+    <Reviews reviews={reviews} restaurantId={restaurantId} user={user} />
   ) : (
     <div>
       <p>Отзывов пока нет</p>
+      {user && <AddReview userId={user.id} restaurantId={restaurantId} />}
     </div>
   );
 };
