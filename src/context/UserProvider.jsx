@@ -1,18 +1,19 @@
 import React, { useState, useCallback } from 'react';
 import { UserContext } from './UserContext';
-import { useSelector } from 'react-redux';
+import { useGetUsersQuery } from '../redux/services/api';
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const users = useSelector((state) => state.users.entities);
+  const { data: users } = useGetUsersQuery();
 
   const login = useCallback(
     (name) => {
-      const allUsers = Object.values(users);
-      const foundUser = allUsers.find((user) => user.name === name);
-      if (foundUser) {
-        setUser(foundUser);
-        return true;
+      if (users) {
+        const foundUser = users.find((user) => user.name === name);
+        if (foundUser) {
+          setUser(foundUser);
+          return true;
+        }
       }
       return false;
     },
