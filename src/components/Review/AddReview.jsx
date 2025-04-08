@@ -17,10 +17,6 @@ const AddReview = ({ userId, restaurantId }) => {
     }).unwrap();
 
     setShouldReset(true);
-
-    setTimeout(() => {
-      setShouldReset(false);
-    }, 100);
   };
 
   return (
