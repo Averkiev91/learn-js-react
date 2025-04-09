@@ -1,4 +1,4 @@
-import { ClientOnlyApp  } from "./app";
+import ClientOnlyApp from "./app";
 
 const Page = () => {
   return (
