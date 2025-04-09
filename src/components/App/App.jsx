@@ -1,5 +1,6 @@
+"use client";
+
 import Layout from "../Layout/Layout";
-import Link from "next/link";
 
 import 'normalize.css';
 import '../../styles/global.css';
@@ -11,14 +12,13 @@ import { store } from '../../redux/store';
 import { ThemeProvider } from '../../context/ThemeProvider';
 import { UserProvider } from '../../context/UserProvider';
 
-const App = () => {
+const App = ({ children }) => {
   return (
     <Provider store={store}>
       <ThemeProvider>
         <UserProvider>
-          <Layout title='Рестораны'>
-          <p>Перейти на страницу ресторанов</p>
-          <Link href="/restaurants">Рестораны</Link>
+          <Layout>
+            {children}
           </Layout>
         </UserProvider>
       </ThemeProvider>
