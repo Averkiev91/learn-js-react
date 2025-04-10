@@ -1,16 +1,20 @@
+import Link from 'next/link';
+import { usePathname } from "next/navigation";
 import classNames from 'classnames';
-import { NavLink } from 'react-router';
 import { navTab, navTabActive, navTabInactive } from './navigationtab.module.css';
 
 const NavigationTab = ({ path, title }) => {
+  const pathname = usePathname();
+  const isActive = pathname === path;
+  
   return (
     <div>
-      <NavLink
-        to={path}
-        className={({ isActive }) => classNames(navTab, isActive ? navTabActive : navTabInactive)}
+      <Link
+        href={path}
+        className={classNames(navTab, isActive ? navTabActive : navTabInactive)}
       >
         {title}
-      </NavLink>
+      </Link>
     </div>
   );
 };

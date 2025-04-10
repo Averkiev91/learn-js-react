@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from 'react';
 import { useUpdateReviewMutation } from '../../redux/services/api';
 import { useUser } from '../../redux/hooks/useUser';
