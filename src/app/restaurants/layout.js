@@ -1,46 +1,33 @@
-"use client"
+"use client";
 
-import RestaurantNavigation from '../../components/RestaurantNavigation/RestaurantNavigation';
-import { useGetRestaurantsQuery } from '../../redux/services/api';
+import RestaurantNavigation from "../../components/RestaurantNavigation/RestaurantNavigation";
+import { useGetRestaurantsQuery } from "../../redux/services/api";
+import LoadErrorDisplay from "../../components/LoadErrorDisplay/LoadErrorDisplay";
 
-const LayoutRestaurantPage = ({children}) => {
+const LayoutRestaurantPage = ({ children }) => {
   const { data: restaurants, isLoading, isError } = useGetRestaurantsQuery();
 
-  if (isLoading) {
-    return (
-      <main>
-        <p>Загрузка</p>
-      </main>
-    );
-  }
-
-  if (isError) {
-    return (
-      <main>
-        <p>Ошибка</p>
-      </main>
-    );
-  }
-
-  if (restaurants?.length === 0) {
-    return (
-      <main>
-        <p>Ресторанов нет</p>
-      </main>
-    );
-  }
-
   return (
-    <>
-      <nav style={{ display: 'flex', gap: '10px' }}>
-        {restaurants.map((restaurant) => (
-          <RestaurantNavigation key={restaurant.id} restaurant={restaurant} />
-        ))}
-      </nav>
-      <main>
-        {children}
-      </main>
-    </>
+    <LoadErrorDisplay
+      data={restaurants}
+      isLoading={isLoading}
+      isError={isError}
+    >
+      {restaurants && (
+        <>
+          <nav style={{ display: "flex", gap: "10px" }}>
+            {restaurants.map((restaurant) => (
+              <RestaurantNavigation
+                key={restaurant.id}
+                restaurant={restaurant}
+              />
+            ))}
+            {restaurants.length === 0 && <p>Ресторанов нет</p>}
+          </nav>
+          <main>{children}</main>
+        </>
+      )}
+    </LoadErrorDisplay>
   );
 };
 
