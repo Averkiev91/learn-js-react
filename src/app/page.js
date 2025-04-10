@@ -1,9 +1,7 @@
 import ClientOnlyApp from "./app";
 
 const Page = () => {
-  return (
-    <ClientOnlyApp/>
-  )
-}
+  return <ClientOnlyApp />;
+};
 
 export default Page;

@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const AppDynamic = dynamic(() => import('../../components/App/App'), {
+const AppDynamic = dynamic(() => import("../components/App/App"), {
   ssr: false,
 });
 
