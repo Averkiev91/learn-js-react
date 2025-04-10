@@ -1,35 +1,11 @@
-"use client";
+import RestaurantLayoutClient from "../../../components/Restaurant/RestaurantLayoutClient";
 
-import { useParams } from "next/navigation";
-import Restaurant from '../../../components/Restaurant/Restaurant';
-import { useGetRestaurantByIdQuery } from '../../../redux/services/api';
-
-const RestaurantPage = ({ children }) => {
-  const { restaurantId } = useParams();
-  const { data: restaurant, isLoading, isError } = useGetRestaurantByIdQuery(restaurantId);
-
-  if (isLoading) {
-    return (
-      <div>
-        <p>Загрузка</p>
-      </div>
-    );
-  }
-
-  if (isError) {
-    return (
-      <div>
-        <p>Ошибка</p>
-      </div>
-    );
-  }
-
+const RestaurantLayout = ({ children }) => {
   return (
-    <>
-      <Restaurant restaurant={restaurant} />
+    <RestaurantLayoutClient>
       {children}
-    </>
+    </RestaurantLayoutClient>
   );
 };
 
-export default RestaurantPage;
+export default RestaurantLayout;
