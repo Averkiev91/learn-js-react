@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React from 'react';
 import { useGetRestaurantsQuery } from '../../redux/services/api';
@@ -12,7 +12,7 @@ const RestaurantLayoutClient = ({ children }) => {
     <LoadErrorDisplay data={restaurants} isLoading={isLoading} isError={isError}>
       {restaurants && (
         <>
-          <nav style={{ display: "flex", gap: "10px" }}>
+          <nav style={{ display: 'flex', gap: '10px' }}>
             {restaurants.map((restaurant) => (
               <RestaurantNavigation key={restaurant.id} restaurant={restaurant} />
             ))}
@@ -25,4 +25,4 @@ const RestaurantLayoutClient = ({ children }) => {
   );
 };
 
-export default RestaurantLayoutClient; 
+export default RestaurantLayoutClient;

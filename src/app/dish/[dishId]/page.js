@@ -1,8 +1,8 @@
-import DishLoader from "../../../components/Dish/DishLoader";
+import DishLoader from '../../../components/Dish/DishLoader';
 
 export const DishPage = async ({ params }) => {
-  const resolvedParams = await params;
-  return <DishLoader params={resolvedParams} />;
+  const { dishId } = params;
+  return <DishLoader dishId={dishId} />;
 };
 
 export default DishPage;

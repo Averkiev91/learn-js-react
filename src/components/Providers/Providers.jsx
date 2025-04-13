@@ -1,21 +1,15 @@
-"use client";
-
-import { Provider } from 'react-redux';
-import { store } from '../../redux/store';
-
 import { ThemeProvider } from '../../context/ThemeProvider';
 import { UserProvider } from '../../context/UserProvider';
+import ReduxProvider from './ReduxProvider';
 
 const Providers = ({ children }) => {
   return (
-    <Provider store={store}>
+    <ReduxProvider>
       <ThemeProvider>
-        <UserProvider>
-          {children}
-        </UserProvider>
+        <UserProvider>{children}</UserProvider>
       </ThemeProvider>
-    </Provider>
+    </ReduxProvider>
   );
 };
 
-export default Providers; 
+export default Providers;

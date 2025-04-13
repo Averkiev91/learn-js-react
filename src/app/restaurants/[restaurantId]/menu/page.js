@@ -1,4 +1,4 @@
-import MenuPageClient from "../../../../components/MenuPageClient/MenuPageClient";
+import MenuPageClient from '../../../../components/MenuPageClient/MenuPageClient';
 
 const MenuPage = ({ params }) => {
   const { restaurantId } = params;

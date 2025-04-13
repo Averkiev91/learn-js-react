@@ -1,24 +1,13 @@
-"use client";
+'use client';
 
-import dynamic from "next/dynamic";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import dynamic from 'next/dynamic';
 
-const AppDynamic = dynamic(() => import("../components/App/App"), {
+const AppDynamic = dynamic(() => import('../components/Layout/Layout'), {
   ssr: false,
 });
 
-const ClientOnlyApp = () => {
-  const pathname = usePathname();
-  if (pathname === "/") {
-    return (
-      <main>
-        <h1>Главная страница</h1>
-        <Link href="/restaurants">К ресторанам</Link>
-      </main>
-    );
-  }
-  return <AppDynamic />;
+export const ClientOnlyApp = ({ children }) => {
+  return <AppDynamic>{children}</AppDynamic>;
 };
 
 export default ClientOnlyApp;
