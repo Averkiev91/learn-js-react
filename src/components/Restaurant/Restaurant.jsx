@@ -1,20 +1,18 @@
-import { Outlet } from 'react-router';
-
 import NavigationTab from '../NavigationTab/NavigationTab';
 
 const Restaurant = ({ restaurant }) => {
   if (!restaurant) {
     return;
   }
+  const { id, name } = restaurant;
 
   return (
     <>
-      <h2>{restaurant.name}</h2>
+      <h2>{name}</h2>
       <div style={{ display: 'flex', gap: '10px' }}>
-        <NavigationTab path='menu' title='Menu' />
-        <NavigationTab path='reviews' title='Reviews' />
+        <NavigationTab path={`/restaurants/${id}/menu`} title='Menu' />
+        <NavigationTab path={`/restaurants/${id}/reviews`} title='Reviews' />
       </div>
-      <Outlet />
     </>
   );
 };
