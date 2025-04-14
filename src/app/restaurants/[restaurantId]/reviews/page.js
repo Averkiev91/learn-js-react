@@ -1,9 +1,11 @@
-import ReviewsPageClient from "../../../../components/ReviewsPageClient/ReviewsPageClient";
+import ReviewsPageClient from '../../../../components/ReviewsPageClient/ReviewsPageClient';
+import { getReviewsByRestaurantId } from '../../../../services/getReviewsByRestaurantId';
 
-const ReviewsPage = ({ params }) => {
-  const { restaurantId } = params;
+const ReviewsPage = async ({ params }) => {
+  const { restaurantId } = await params;
+  const reviews = await getReviewsByRestaurantId(restaurantId);
 
-  return <ReviewsPageClient restaurantId={restaurantId} />;
+  return <ReviewsPageClient reviews={reviews} restaurantId={restaurantId} />;
 };
 
 export default ReviewsPage;

@@ -1,22 +1,23 @@
 import React, { useState } from 'react';
-import { useAddReviewMutation } from '../../redux/services/api';
+import { addReview } from '../../services/addReview';
 import ReviewForm from './ReviewForm';
 
 const AddReview = ({ userId, restaurantId }) => {
-  const [addReview, { isLoading }] = useAddReviewMutation();
+  const [isLoading, setIsLoading] = useState(false);
   const [shouldReset, setShouldReset] = useState(false);
 
   const handleSubmit = async ({ text, rating }) => {
-    await addReview({
-      restaurantId,
-      review: {
-        userId,
-        text,
-        rating,
-      },
-    }).unwrap();
+    setIsLoading(true);
+    await addReview(restaurantId, {
+      userId,
+      text,
+      rating,
+    });
 
     setShouldReset(true);
+
+    await fetch(`/api/revalidateByTag?tag=getReviewsByRestaurantId`);
+    setIsLoading(false);
   };
 
   return (
