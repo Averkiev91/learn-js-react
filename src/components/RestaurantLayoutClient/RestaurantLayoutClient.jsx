@@ -1,12 +1,12 @@
-'use client';
-
 import React from 'react';
 import RestaurantNavigation from '../RestaurantNavigation/RestaurantNavigation';
+import styles from './RestaurantLayoutClient.module.css';
+
 
 const RestaurantLayoutClient = ({ children, restaurants }) => {
   return (
     <>
-      <nav style={{ display: 'flex', gap: '10px' }}>
+      <nav className={styles.flex}>
         {restaurants.map((restaurant) => (
           <RestaurantNavigation key={restaurant.id} restaurant={restaurant} />
         ))}

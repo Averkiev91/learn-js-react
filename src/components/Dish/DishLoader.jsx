@@ -6,7 +6,7 @@ import Dish from '../../components/Dish/Dish';
 const DishLoader = ({ dish, dishId }) => {
   return (
     <div>
-      <p>{`Количество блюд:`}</p>
+      <p>Количество блюд:</p>
       <Dish dish={dish} />
       <DishCounter dishId={dishId} />
     </div>
