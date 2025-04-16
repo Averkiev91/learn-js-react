@@ -1,23 +1,18 @@
-import React, { useState } from 'react';
-import { addReview } from '../../services/addReview';
+import React, { useTransition } from 'react';
+import { useActionState } from 'react';
+import { addReviewAction } from '../../actions/reviewActions';
 import ReviewForm from './ReviewForm';
 
 const AddReview = ({ userId, restaurantId }) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [shouldReset, setShouldReset] = useState(false);
+  const [_, formAction] = useActionState(async (_, { text, rating }) => {
+    return addReviewAction({ restaurantId, review: { userId, text, rating } });
+  }, null);
+  const [isPending, startTransition] = useTransition();
 
-  const handleSubmit = async ({ text, rating }) => {
-    setIsLoading(true);
-    await addReview(restaurantId, {
-      userId,
-      text,
-      rating,
+  const handleSubmit = ({ text, rating }) => {
+    startTransition(() => {
+      formAction({ text, rating });
     });
-
-    setShouldReset(true);
-
-    await fetch(`/api/revalidateByTag?tag=getReviewsByRestaurantId`);
-    setIsLoading(false);
   };
 
   return (
@@ -26,8 +21,7 @@ const AddReview = ({ userId, restaurantId }) => {
       <ReviewForm
         onSubmit={handleSubmit}
         submitButtonText='Добавить отзыв'
-        isLoading={isLoading}
-        shouldReset={shouldReset}
+        isLoading={isPending}
       />
     </div>
   );
