@@ -6,4 +6,6 @@ const RestaurantsPage = () => {
   );
 };
 
+export const generateMetadata = () => ({ title: 'Рестораны' });
+
 export default RestaurantsPage;

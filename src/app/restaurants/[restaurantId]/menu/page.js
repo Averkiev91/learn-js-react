@@ -1,9 +1,11 @@
-import MenuPageClient from '../../../../components/MenuPageClient/MenuPageClient';
+import Menu from '../../../../components/Menu/Menu';
+import { getDishesByRestaurantId } from '../../../../services/getDishesByRestaurantId';
 
-const MenuPage = ({ params }) => {
-  const { restaurantId } = params;
+const MenuPage = async ({ params }) => {
+  const { restaurantId } = await params;
+  const dishes = await getDishesByRestaurantId(restaurantId);
 
-  return <MenuPageClient restaurantId={restaurantId} />;
+  return <Menu menu={dishes} />;
 };
 
 export default MenuPage;

@@ -1,27 +1,19 @@
-'use client';
-
 import React from 'react';
-import { useGetRestaurantsQuery } from '../../redux/services/api';
-import LoadErrorDisplay from '../LoadErrorDisplay/LoadErrorDisplay';
 import RestaurantNavigation from '../RestaurantNavigation/RestaurantNavigation';
+import styles from './RestaurantLayoutClient.module.css';
 
-const RestaurantLayoutClient = ({ children }) => {
-  const { data: restaurants, isLoading, isError } = useGetRestaurantsQuery();
 
+const RestaurantLayoutClient = ({ children, restaurants }) => {
   return (
-    <LoadErrorDisplay data={restaurants} isLoading={isLoading} isError={isError}>
-      {restaurants && (
-        <>
-          <nav style={{ display: 'flex', gap: '10px' }}>
-            {restaurants.map((restaurant) => (
-              <RestaurantNavigation key={restaurant.id} restaurant={restaurant} />
-            ))}
-            {restaurants.length === 0 && <p>Ресторанов нет</p>}
-          </nav>
-          <main>{children}</main>
-        </>
-      )}
-    </LoadErrorDisplay>
+    <>
+      <nav className={styles.flex}>
+        {restaurants.map((restaurant) => (
+          <RestaurantNavigation key={restaurant.id} restaurant={restaurant} />
+        ))}
+        {restaurants.length === 0 && <p>Ресторанов нет</p>}
+      </nav>
+      <main>{children}</main>
+    </>
   );
 };
 

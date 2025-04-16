@@ -1,22 +1,18 @@
-import React, { useState } from 'react';
-import { useAddReviewMutation } from '../../redux/services/api';
+import React, { useTransition } from 'react';
+import { useActionState } from 'react';
+import { addReviewAction } from '../../actions/reviewActions';
 import ReviewForm from './ReviewForm';
 
 const AddReview = ({ userId, restaurantId }) => {
-  const [addReview, { isLoading }] = useAddReviewMutation();
-  const [shouldReset, setShouldReset] = useState(false);
+  const [_, formAction] = useActionState(async (_, { text, rating }) => {
+    return addReviewAction({ restaurantId, review: { userId, text, rating } });
+  }, null);
+  const [isPending, startTransition] = useTransition();
 
-  const handleSubmit = async ({ text, rating }) => {
-    await addReview({
-      restaurantId,
-      review: {
-        userId,
-        text,
-        rating,
-      },
-    }).unwrap();
-
-    setShouldReset(true);
+  const handleSubmit = ({ text, rating }) => {
+    startTransition(() => {
+      formAction({ text, rating });
+    });
   };
 
   return (
@@ -25,8 +21,7 @@ const AddReview = ({ userId, restaurantId }) => {
       <ReviewForm
         onSubmit={handleSubmit}
         submitButtonText='Добавить отзыв'
-        isLoading={isLoading}
-        shouldReset={shouldReset}
+        isLoading={isPending}
       />
     </div>
   );
